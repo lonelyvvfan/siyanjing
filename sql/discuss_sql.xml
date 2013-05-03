@@ -1,0 +1,20 @@
+<sqlGroup name="discuss">
+    <sql id="findOneById">
+        select U.username authorname,J.*,R.views,R.comments from users U, discuss J left join discuss_record R on J.id=R.id where U.id=J.author and J.id= ?
+    </sql>
+    <sql id="findListForIndex">
+        select J.*,R.views,R.comments from discuss J left join discuss_record R on J.id=R.id order by J.id asc limit 0,10
+    </sql>
+    <sql id="findListForDiscussIndexByViews">
+        select J.*,R.views,R.comments from discuss J left join discuss_record R on J.id=R.id order by R.views desc limit 0,10
+    </sql>
+    <sql id="findListForDiscussIndexByTime">
+        select J.*,R.views,R.comments from discuss J left join discuss_record R on J.id=R.id order by J.createtime desc limit 0,10
+    </sql>
+    <sql id="findByUser">
+        select J.*,R.views,R.comments from discuss J left join discuss_record R on J.id=R.id where author=？
+    </sql>
+    <sql id="findUser">
+        select * from user
+    </sql>
+</sqlGroup>

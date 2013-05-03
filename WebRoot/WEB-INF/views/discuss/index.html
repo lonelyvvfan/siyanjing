@@ -1,0 +1,66 @@
+<#include "/layout/_layout.html" />
+<@head title="首页|四眼井|互联网人的乐园 ">
+<script src="/js/discuss.js"></script>
+</@head> <@body>
+<script type="text/javascript"> 
+			var prjname={"1":"NET","2":"PHP","3":"Java",
+			"4":"C/C++","19":"Python","20":"Ruby",
+			"5":"JavaScript", "6":"Flash", "7":"Delphi",
+			"8":"前端开发", "9":"项目经理", "10":"主管", "11":"架构", "12":"总监",
+			"13":"测试", "14":"系统", "15":"数据库", "16":"售前",
+			"17":"手机应用开发", "18":"其他"};
+			var type={"1":"技术问答",
+					"2":"技术分享",
+					"3":"IT大杂烩",
+					"4":"职业生涯",
+					"5":"站务/建议",}
+			function distype(a){
+				document.write(type[a]);
+			}
+			function disprjname(a){
+				document.write(prjname[a]);
+			}</script>
+			<div class="clear"></div>
+<div class="container clearfix">
+	<div class="ui-grid-19">
+		<div class="mgl-20">
+			<div class="ui-box clearfix">
+
+				<#list discusslist as discuss>
+				<div class="FilterPosition">
+					<div class="CoPart" style="float: right; color: gray;">
+						<span class="PoCount">评论(<span class="PsDetail"><a
+								href="http://www.oschina.net/discuss/detail/1030362_5336#userComments">${discuss.comments!"0"}</a></span>)
+						</span> <span class="PoCount">阅读(<span class="PsDetail">${discuss.views!"0"}</span>)
+						</span>
+					</div>
+					<div class="CoPart1 CoPart">
+						<span> <a
+							href="discuss/show?id=${discuss.id}"
+							target="_blank" title="JAVA程序员">${discuss.title}</a>
+						</span> <span style="font-weight: normal;"> &nbsp;&nbsp;<a
+							href="http://www.oschina.net/discuss/firm/1030362_1857"
+							target="_blank" style="font-size: 13px;"></a>
+						</span>
+					</div>
+					<div class="CoPart">
+						<span class="PoWrapper"
+							style="width: 200px; display: inline-block;">
+						<span class="PoWrapper" style="width: 150px; display: inline-block;"><strong>软件：</strong>
+							<span class="PsDetail"><script type="text/javascript">disprjname('${discuss.prjname}');</script></span>
+						</span>
+						<span style="float: left; color: gray; font-size: 9pt;"><strong><span class="PsDetail"></span>发布于：</strong>
+							<span class="PsDetail">${discuss.createtime}</span>
+						</span>
+					</div>
+
+					<div class="clear"></div>
+				</div>
+				</#list>
+			</div>
+		</div>
+	</div>
+		<#include "/layout/discuss/rightmoudle.html">
+</div>
+
+</@body>

@@ -1,0 +1,77 @@
+<#include "/layout/_layout.html" /> <@head title="首页|四眼井|互联网人的乐园 ">
+</@head>
+<@script>
+<script type="text/javascript">
+    seajs.use('kindeditor', function(KindEditor){
+        KindEditor.ready(function(K){
+            K.create('#editor_id');
+        });
+    });
+</script>
+</@script> <@body>
+<div class=" clearfix">
+	<div class="ui-grid-19">
+		<div class="mgl-20">
+			<div class="ui-box">
+				<form action="/discuss/create" class="ui-form" method="post">
+					<fieldset>
+						<div class="ui-form-item">
+							<label class="ui-label"><span class="lable">标题：</span></label><input class="ui-input" type="text"
+								name="discuss.title">
+						</div>
+						<div class="ui-form-item">
+							<label class="ui-label"><span class="lable">分类:</span></label><select
+								class="ui-select" name="discuss.type">
+								<option value="0">分类</option>
+								<option value="1">技术问答</option>
+								<option value="2">技术分享</option>
+								<option value="3">IT大杂烩</option>
+								<option value="4">职业生涯</option>
+								<option value="5">站务/建议</option>
+								</select>
+						</div>
+						<div class="ui-form-item">
+							<label class="ui-label"><span class="lable">软件：</span></label><select
+								class="ui-select" name="discuss.prjname">
+								<option value="0">请选择软件:</option>
+								<option value="1">.NET</option>
+								<option value="2">PHP</option>
+								<option value="3">Java</option>
+								<option value="4">C/C++</option>
+								<option value="19">Python</option>
+								<option value="20">Ruby</option>
+								<option value="5">JavaScript</option>
+								<option value="6">Flash</option>
+								<option value="7">Delphi</option>
+								<option value="8">前端开发</option>
+								<option value="9">项目经理</option>
+								<option value="10">主管</option>
+								<option value="11">架构</option>
+								<option value="12">总监</option>
+								<option value="13">测试</option>
+								<option value="14">系统</option>
+								<option value="15">数据库</option>
+								<option value="16">售前</option>
+								<option value="17">手机应用开发</option>
+								<option value="18">其他</option>
+							</select>
+						</div>
+						<div class="ui-form-item">
+							<label class="ui-label"><span class="lable">详细描述:</span></label>
+							<textarea class="ui-textarea" name="discuss.content"></textarea>
+							<textarea id="editor_id" name="discuss.content" style="width:700px;height:300px;visibility:hidden;"></textarea>
+						</div>
+						<div class="ui-form-item">
+							<div class="ui-button ui-button-mblue">
+								<input class="ui-input" type="submit" class="ui-button-text"
+									value="提交">
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+   <#include "/layout/discuss/rightmoudle.html">
+</div>
+</@body>
