@@ -18,7 +18,7 @@ public class DiscussRecordInterceptor implements Interceptor{
 		    record.put(id,1);
 		else {
 			record.put(id, (record.get(id)+1));
-		if(count>0) {
+		if(count>2) {
 					Object key[] = record.keySet().toArray();
 					Object value[]=record.values().toArray();
 					for(int b=0;b<record.size();b++){

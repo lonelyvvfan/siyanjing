@@ -1,52 +1,27 @@
-<#include "/layout/_layout.html" /> <@head title="首页|四眼井|互联网人的乐园 "></@head> <@body 5>
-<@script>
-<script type="text/javascript">
-    seajs.use('kindeditor', function(KindEditor){
-        KindEditor.ready(function(K){
-            K.create('#editor_id');
-        });
-    });
-</script>
-</@script>
-<script type="text/javascript"> 
-			var prjname={"1":"NET","2":"PHP","3":"Java",
-			"4":"C/C++","19":"Python","20":"Ruby",
-			"5":"JavaScript", "6":"Flash", "7":"Delphi",
-			"8":"前端开发", "9":"项目经理", "10":"主管", "11":"架构", "12":"总监",
-			"13":"测试", "14":"系统", "15":"数据库", "16":"售前",
-			"17":"手机应用开发", "18":"其他"};
-			var type={"1":"技术问答",
-					"2":"技术分享",
-					"3":"IT大杂烩",
-					"4":"职业生涯",
-					"5":"站务/建议",}
-			function distype(a){
-				document.write(type[a]);
-			}
-			function disprjname(a){
-				document.write(prjname[a]);
-			}</script>
+<#include "/layout/_layout.html" /> <@head title="首页|四眼井|互联网人的乐园 ">
+<script src="/js/discuss.js"></script>
+</@head> <@body 5>
 <div class=" clearfix">
 	<div class="ui-grid-19">
 		<div class="mgl-20">
 			<div class="ui-box">
 				<div class="ui-box-title">
-					<a href="#" title="JAVA程序员" style="font-size:5px">${discuss.title}</a>
+					<a href="" ><strong style="font-size:15px">${discuss.title}</strong></a>
 				</div>
 				<div class="ui-box-content">
 					<div id="DiscussDetail" style="overflow: hidden; width: 700px;">
 						<ul class="info">
 							<li>
 								<strong style="font-size:15px">发布者：</strong>
-								<a href="http://my.oschina.net/u/1030362" style="font-size:10px ">
+								<a href="http://my.siyanjing.com/${discuss.authorname}">
 									${discuss.authorname}
 								</a>
-							</li>
-							<li>
-								<strong style="font-size:15px">发布日期：</strong>&nbsp; ${discuss.createtime?string("yyyy-MM-dd hh-mm-ss")}
+								&nbsp; &nbsp; &nbsp; <strong style="font-size:15px">发布日期：</strong>&nbsp; ${discuss.createtime?string("yyyy-MM-dd hh:mm:ss")}
+								&nbsp; &nbsp; &nbsp; <strong style="font-size:15px">${discuss.views!"0"}阅读/${discuss.comments!"0"}回复</strong>
 							</li>
 						</ul>
-						<strong style="font-size:15px">正文:</strong>
+						<br>
+						<strong style="font-size:15px">详细描述:</strong>
 						<div class="detail">
 							${discuss.content}
 							<div class="clear">
@@ -54,9 +29,15 @@
 						</div>
 						<ul class="more_detail">
 							<li>
-								<strong style="font-size:15px">分类： </strong>
+								<strong>类别： </strong>
 								<script>
 									distype('${discuss.type}')
+								</script>
+							</li>
+							
+							<li>
+								<strong style="font-size:15px">标签：</strong>&nbsp;<script>
+									disprjname('${discuss.prjname}');
 								</script>
 							</li>
 						</ul>
@@ -95,3 +76,12 @@
 	<#include "/layout/discuss/rightmoudle.html">
 </div>
 </@body>
+<@script>
+<script type="text/javascript">
+    seajs.use('kindeditor', function(KindEditor){
+        KindEditor.ready(function(K){
+            K.create('#editor_id');
+        });
+    });
+</script>
+</@script>

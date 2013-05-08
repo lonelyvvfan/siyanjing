@@ -2,7 +2,19 @@
 		<div class="job-panel">
 			<a href="/discuss/add" class="job-button job-button-blue">我要提问</a>
 		</div>
-		<div class="job-panel">
-			<a href="#" class="job-button job-button-red">我要提问</a>
-		</div>
+		
 	</aside>
+<div class="ui-grid-6">
+		<div class="ui-box">
+			<div class="ui-box-title">热门类别</div>
+			<div class="ui-box-content">
+				<ul class="">
+					
+					<#list hotdiscusstype as hot>
+					<li class=""><a href="/discuss/search?type=${hot.type}"><script type="text/javascript">distype('${hot.type}');</script></a>(${hot.count!})</li> 
+					
+					</#list>
+				</ul>
+			</div>
+		</div>
+	</div>

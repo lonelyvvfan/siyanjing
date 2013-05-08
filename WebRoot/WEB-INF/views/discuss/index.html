@@ -1,66 +1,123 @@
 <#include "/layout/_layout.html" />
 <@head title="首页|四眼井|互联网人的乐园 ">
 <script src="/js/discuss.js"></script>
-</@head> <@body>
-<script type="text/javascript"> 
-			var prjname={"1":"NET","2":"PHP","3":"Java",
-			"4":"C/C++","19":"Python","20":"Ruby",
-			"5":"JavaScript", "6":"Flash", "7":"Delphi",
-			"8":"前端开发", "9":"项目经理", "10":"主管", "11":"架构", "12":"总监",
-			"13":"测试", "14":"系统", "15":"数据库", "16":"售前",
-			"17":"手机应用开发", "18":"其他"};
-			var type={"1":"技术问答",
-					"2":"技术分享",
-					"3":"IT大杂烩",
-					"4":"职业生涯",
-					"5":"站务/建议",}
-			function distype(a){
-				document.write(type[a]);
-			}
-			function disprjname(a){
-				document.write(prjname[a]);
-			}</script>
-			<div class="clear"></div>
-<div class="container clearfix">
+</@head> <@body 5>
+<div class="clearfix">
 	<div class="ui-grid-19">
 		<div class="mgl-20">
-			<div class="ui-box clearfix">
+			<div class="ui-box pd20">
+				<form action="/discuss/search" class="ui-form" method="post">
+					<fieldset>
+						<legend>论坛表单</legend>
+						<div class="ui-form-item">
+							<label for class="ui-label">关键字搜索：</label> <input type="text"
+								name="name" class="ui-input">
+						</div>
+						<div class="ui-form-item">
+							<label class="ui-label">类别：</label> <select class="ui-select"
+								name="type">
+								<option value="">请选择</option>
+								<option value="1">.NET</option>
+								<option value="2">PHP</option>
+								<option value="3">Java</option>
+								<option value="4">C/C++</option>
+								<option value="19">Python</option>
+								<option value="20">Ruby</option>
+								<option value="5">JavaScript</option>
+								<option value="6">Flash</option>
+								<option value="7">Delphi</option>
+								<option value="8">前端开发</option>
+								<option value="9">项目</option>
+								<option value="10">主管</option>
+								<option value="11">架构</option>
+								<option value="12">总监</option>
+								<option value="13">测试</option>
+								<option value="14">系统</option>
+								<option value="15">数据库</option>
+								<option value="16">售前</option>
+								<option value="17">手机应用开发</option>
+								<option value="18">其他</option>
+							</select>
+						</div>
 
-				<#list discusslist as discuss>
-				<div class="FilterPosition">
+						<div class="ui-form-item">
+							<label class="ui-label">标签：</label> <select
+								id="prjname" class="ui-select " name="discuss.prjname">
+								<option value="0">请选择标签</option>
+								<option value="1">技术问答</option>
+								<option value="2">技术分享</option>
+								<option value="3">IT大杂烩</option>
+								<option value="4">职业生涯</option>
+								<option value="5">站务/建议</option>
+							</select>
+						</div>
+						<div class="ui-form-item">
+							<div class="ui-button ui-button-mblue">
+								<input type="submit" class="btn-g blue" value="搜索">
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+			<div class="ui-box clearfix">
+        <h3 style="font-size:1em;padding:13px;">共查询到${count}个帖子。</h3>
+      				<#list discuss_list.getList() as discuss>
+				<div class="FilterPosition" >
 					<div class="CoPart" style="float: right; color: gray;">
+						<div>
 						<span class="PoCount">评论(<span class="PsDetail"><a
-								href="http://www.oschina.net/discuss/detail/1030362_5336#userComments">${discuss.comments!"0"}</a></span>)
-						</span> <span class="PoCount">阅读(<span class="PsDetail">${discuss.views!"0"}</span>)
+								href="discuss/show?id=${discuss.id}">${discuss.comments!"0"}</a></span>)
+						</span> 
+						</div>
+						<div><span class="PoCount">阅读(<span class="PsDetail">${discuss.views!"0"}</span>)
 						</span>
+						</div>
 					</div>
 					<div class="CoPart1 CoPart">
 						<span> <a
-							href="discuss/show?id=${discuss.id}"
-							target="_blank" title="JAVA程序员">${discuss.title}</a>
-						</span> <span style="font-weight: normal;"> &nbsp;&nbsp;<a
-							href="http://www.oschina.net/discuss/firm/1030362_1857"
-							target="_blank" style="font-size: 13px;"></a>
-						</span>
+							href="/discuss/show?id=${discuss.id}"
+							 title="JAVA">${discuss.title}</a>
+						</span> 
 					</div>
 					<div class="CoPart">
-						<span class="PoWrapper"
+					<ul>
+						<li>
+							<span class="PoWrapper"
+							style="width: 150px; display: inline-block;"> 类別：<span
+							class="PsDetail"><script type="text/javascript">distype('${discuss.type}');</script></span>
+							</span>
+						</li> 
+						<li>
+							<span class="PoWrapper"
 							style="width: 200px; display: inline-block;">
-						<span class="PoWrapper" style="width: 150px; display: inline-block;"><strong>软件：</strong>
-							<span class="PsDetail"><script type="text/javascript">disprjname('${discuss.prjname}');</script></span>
+							标签：<script type="text/javascript">disprjname('${discuss.prjname}')</script>
+							 </span> 
+						<span style="float: right; color: gray; font-size: 9pt;">
+							作者<a href="http://my.siyanjing.com/${discuss.authorname}">
+									${discuss.authorname}
+								</a>发布于：<span class="PsDetail">${discuss.createtime}</span>
 						</span>
-						<span style="float: left; color: gray; font-size: 9pt;"><strong><span class="PsDetail"></span>发布于：</strong>
-							<span class="PsDetail">${discuss.createtime}</span>
-						</span>
+						</li>
+						</ul>
 					</div>
 
-					<div class="clear"></div>
+					<div class="clear">
+					 <#include "/layout/_paginate.html" />
+	<@paginate currentPage=discuss_list.pageNumber totalPage=discuss_list.totalPage actionUrl="index?page=" />
+					
+					</div>
 				</div>
 				</#list>
+
+	<#include "/layout/_paginate.html" />
+	<@paginate currentPage=discuss_list.pageNumber totalPage=discuss_list.totalPage actionUrl="index?page=" />
 			</div>
 		</div>
 	</div>
-		<#include "/layout/discuss/rightmoudle.html">
+	
+	<#include "/layout/discuss/rightmoudle.html">
 </div>
 
 </@body>
+<@script>
+</@script>

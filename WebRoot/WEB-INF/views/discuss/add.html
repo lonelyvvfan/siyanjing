@@ -1,39 +1,21 @@
 <#include "/layout/_layout.html" /> <@head title="首页|四眼井|互联网人的乐园 ">
-</@head>
-<@script>
-<script type="text/javascript">
-    seajs.use('kindeditor', function(KindEditor){
-        KindEditor.ready(function(K){
-            K.create('#editor_id');
-        });
-    });
-</script>
-</@script> <@body>
+<script src="/js/discuss.js"></script>
+</@head> <@body 5>
 <div class=" clearfix">
 	<div class="ui-grid-19">
 		<div class="mgl-20">
-			<div class="ui-box">
-				<form action="/discuss/create" class="ui-form" method="post">
+			<div class="ui-box pd20">
+				<form action="/discuss/create" class="ui-form" method="post" id="add_form" onsubmit="return check_select()">
 					<fieldset>
 						<div class="ui-form-item">
-							<label class="ui-label"><span class="lable">标题：</span></label><input class="ui-input" type="text"
+							<label class="ui-label" style="font-size:16px">标题：</label><input class="ui-input" type="text"
 								name="discuss.title">
 						</div>
+						
 						<div class="ui-form-item">
-							<label class="ui-label"><span class="lable">分类:</span></label><select
+							<label class="ui-label" style="font-size:16px">类别：</label><select
 								class="ui-select" name="discuss.type">
-								<option value="0">分类</option>
-								<option value="1">技术问答</option>
-								<option value="2">技术分享</option>
-								<option value="3">IT大杂烩</option>
-								<option value="4">职业生涯</option>
-								<option value="5">站务/建议</option>
-								</select>
-						</div>
-						<div class="ui-form-item">
-							<label class="ui-label"><span class="lable">软件：</span></label><select
-								class="ui-select" name="discuss.prjname">
-								<option value="0">请选择软件:</option>
+								<option value="0">请选择类别:</option>
 								<option value="1">.NET</option>
 								<option value="2">PHP</option>
 								<option value="3">Java</option>
@@ -44,7 +26,7 @@
 								<option value="6">Flash</option>
 								<option value="7">Delphi</option>
 								<option value="8">前端开发</option>
-								<option value="9">项目经理</option>
+								<option value="9">项目</option>
 								<option value="10">主管</option>
 								<option value="11">架构</option>
 								<option value="12">总监</option>
@@ -57,14 +39,25 @@
 							</select>
 						</div>
 						<div class="ui-form-item">
-							<label class="ui-label"><span class="lable">详细描述:</span></label>
-							<textarea class="ui-textarea" name="discuss.content"></textarea>
-							<textarea id="editor_id" name="discuss.content" style="width:700px;height:300px;visibility:hidden;"></textarea>
+							<label class="ui-label" style="font-size:16px">标签：</label> <select
+								id="prjname" class="ui-select" name="discuss.prjname">
+
+								<option value="0">请选择标签</option>
+								<option value="1">技术问答</option>
+								<option value="2">技术分享</option>
+								<option value="3">IT大杂烩</option>
+								<option value="4">职业生涯</option>
+								<option value="5">站务/建议</option>
+							</select>
+						</div>
+							<div class="clear"></div>
+						<div class="ui-form-item">
+							<label class="ui-label" style="font-size:16px">详细：</label>
+							<textarea id="editor_id" class="" name="discuss.content"></textarea>
 						</div>
 						<div class="ui-form-item">
 							<div class="ui-button ui-button-mblue">
-								<input class="ui-input" type="submit" class="ui-button-text"
-									value="提交">
+								<input class="ui-input" type="submit" value="提交">
 							</div>
 						</div>
 					</fieldset>
@@ -75,3 +68,45 @@
    <#include "/layout/discuss/rightmoudle.html">
 </div>
 </@body>
+
+
+<@script>
+<script type="text/javascript">
+    seajs.use('kindeditor', function(KindEditor){
+        KindEditor.ready(function(K){    	
+            K.create('#editor_id', { width :  '100%' });
+        });
+    });
+</script>
+
+<script type="text/javascript">
+	seajs.use('validate',function(validate){
+		$("#add_form").validate({
+			onkeyup: false,
+
+
+	        rules: {
+	        	'discuss.title':{
+	        	required :true},
+				  'discuss.type':{
+				   min:1},
+				   'discuss.prjname':{
+					min:1},
+				'check':'required'
+	        },
+	        messages:{
+				'discuss.type':{
+					min :"请选择类型"
+				},
+				'discuss.prjname':{
+					min :"请选择标签"
+				},
+				'check':""
+			},
+	        submitHandler: function(form){
+	            form.submit();
+	        }
+	    });
+	});
+</script>
+</@script>
