@@ -7,7 +7,6 @@ import me.thinkjet.auth.AuthManager;
 import me.thinkjet.interceptor.DiscussInterceptor;
 import me.thinkjet.interceptor.DiscussRecordInterceptor;
 import me.thinkjet.model.Discuss;
-import me.thinkjet.model.Job;
 
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
